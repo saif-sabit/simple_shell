@@ -46,14 +46,13 @@ int main(int argc, char **argv, char **envp)
 
 		child_pid = fork();
 		if (child_pid == -1)
-			return (1);
+			return  (1);
 		if (child_pid == 0)
 		{
 			int result = execve(tokens[0], tokens, envp);
 
 			if (result == -1)
-				printf("%s : No such file or directory\n", argv[0]);
-			exit(0);
+				printf("%s: No such file or directory\n", argv[0]);
 		}
 		else
 			wait(&status);
