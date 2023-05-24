@@ -1,74 +1,84 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
-#include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
 #include <sys/wait.h>
 
-void external(char **argv);
-
-/**
- * main - Entry point
- * @argc: number of args
- * @argv: actual args
- * @argc: number of args
- * Return: 0 on success 1 on failliar
- */
-
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
-	char *line, *token;
-	size_t buffer = 1;
+
+	char *line, *line_copy;
+	size_t line_size = 1024;
+	char *token, *path_token;
+	char **tokens;
+	char *env, *en;
+	int i = 0;
+	struct stat st;
 	pid_t child_pid;
-
-	if (argc < 2)
-	{
-
-		external(argv);
-	}
+	int status;
+	en = getenv("PATH");
 
 	while (1)
 	{
+
 		printf("#cisfun$ ");
-		line = malloc(sizeof(char) * buffer);
-		getline(&line, &buffer, stdin);
-		token = strtok(line, "\n");
-		child_pid = fork();
-		if (child_pid == -1)
-			exit(1);
-		if (child_pid == 0)
+		line = malloc(sizeof(char) * line_size);
+		getline(&line, &line_size, stdin);
+
+		line_copy = strdup(line);
+
+		token = strtok(line, " \n");
+		if (strcmp(token, "exit") == 0)
 		{
-			if (execve(token, argv, NULL) == -1)
-				printf("%s : No such file or directory\n", argv[0]);
-			else
-				exit(0);
-		}
-		else
-			wait(NULL);
-		free(line);
-	}
-}
-
-/**
- * external - Entry point
- * @argv: actual args
- * Return: 0 on success 1 on failliar
- */
-void external(char **argv)
-{
-	pid_t child_pid;
-
-	child_pid = fork();
-	if (child_pid == -1)
-		exit(1);
-	if (child_pid == 0)
-	{
-		if (execve(argv[0], argv, NULL) == -1)
-			printf("%s : No such file or directory\n", argv[0]);
-		else
 			exit(0);
+		}
+		while (token)
+		{
+			token = strtok(NULL, " \n");
+			i++;
+		}
+
+		tokens = malloc(sizeof(char *) * i);
+		token = strtok(line_copy, " \n");
+		i = 0;
+		while (token)
+		{
+			tokens[i] = malloc(strlen(token) * sizeof(char));
+			tokens[i] = token;
+			token = strtok(NULL, " \n");
+			i++;
+		}
+		i = 0;
+
+		while (path_token)
+		{
+			tokens[0] = argv[1];
+			child_pid = fork();
+			if (child_pid == -1)
+			{
+				return (1);
+			}
+			if (child_pid == 0)
+			{
+				if (execve(tokens[0], tokens, envp) == -1)
+				{
+					perror("Error:");
+					exit(0);
+				}
+				exit(0);
+			}
+			else
+			{
+				wait(&status);
+			}
+		}
+		free(line);
+		free(line_copy);
+		
 	}
-	else
-		wait(NULL);
+
+	return 0;
 }
