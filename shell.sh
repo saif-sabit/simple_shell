@@ -1,5 +1,6 @@
 #!/bin/bash
 
-betty shell.c
+betty-style shell.c
+betty-doc shell.c
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 shell.c -o shell
-chmod +x shell
+sudo chmod +x shell
