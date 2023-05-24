@@ -33,26 +33,27 @@ int main(int argc, char **argv, char **envp)
 
 	while (1)
 	{
-		printf("#cisfun$ ");
+		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		line = malloc(sizeof(char) * line_size);
 
 		nchars_read = getline(&line, &line_size, stdin);
 		if (nchars_read == -1)
 		{
-			return (-1);
+			exit(1);
 		}
 
 		tokens = get_tokens(line, tokens);
 
 		child_pid = fork();
 		if (child_pid == -1)
-			return  (1);
+			exit(1);
 		if (child_pid == 0)
 		{
 			int result = execve(tokens[0], tokens, envp);
 
 			if (result == -1)
 				printf("%s: No such file or directory\n", argv[0]);
+			exit(1);
 		}
 		else
 			wait(&status);
@@ -98,6 +99,6 @@ char **get_tokens(char *line, char **tokens)
 		token = strtok(NULL, " \n");
 		i++;
 	}
-
+	tokens[i] = NULL;
 	return (tokens);
 }
