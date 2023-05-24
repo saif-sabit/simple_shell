@@ -21,13 +21,14 @@ char **get_tokens(char *line, char **tokens);
 int main(int argc, char **argv, char **envp)
 {
 
-	char *line, *token, *env;
+	char *line;
 	size_t line_size = 1024;
-	char **tokens;
-	int i = 0;
-	struct stat st;
+	char **tokens = NULL;
 	pid_t child_pid;
 	int status;
+
+	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
