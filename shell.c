@@ -10,18 +10,18 @@
  * @argc: number of args
  * @argv: actual args
  * Return: 0 on success 1 on failliar
-*/
+ */
 int main(int argc, char **argv)
 {
 	char *line, *token;
 	size_t buffer = 1;
-	int status;
+	int status = 1;
 	pid_t child_pid;
-	(void) argc;
+	(void)argc;
 
-	while (1)
+	while (status)
 	{
-		printf("#cisfun$");
+		printf("#cisfun$ ");
 		line = malloc(sizeof(char) * buffer);
 		getline(&line, &buffer, stdin);
 		token = strtok(line, "\n");
