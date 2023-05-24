@@ -15,11 +15,10 @@ int main(int argc, char **argv)
 {
 	char *line, *token;
 	size_t buffer = 1;
-	int status = 1;
 	pid_t child_pid;
 	(void)argc;
 
-	while (status)
+	while (1)
 	{
 		printf("#cisfun$ ");
 		line = malloc(sizeof(char) * buffer);
@@ -27,17 +26,16 @@ int main(int argc, char **argv)
 		token = strtok(line, "\n");
 		child_pid = fork();
 		if (child_pid == -1)
-		{
-			perror("Error:");
-			return (1);
-		}
+			exit(1);
 		if (child_pid == 0)
 		{
 			if (execve(token, argv, NULL) == -1)
 				printf("%s : No such file or directory\n", argv[0]);
+			else
+				exit(0);
 		}
 		else
-			wait(&status);
+			wait(NULL);
 		free(line);
 	}
 }
