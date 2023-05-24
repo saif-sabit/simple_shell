@@ -1,104 +1,50 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <string.h>
-#include <sys/wait.h>
-
-char **get_tokens(char *line, char **tokens);
-
+#include "shell.h"
 /**
- * main - entry point
- * @argc: number of arguments
- * @argv: array of arguments
- * @envp: array of environment variables
- *
- * Return: 0 on success
- */
-
-int main(int argc, char **argv, char **envp)
+ * main- entry point
+ * @ac: number of args
+ * @argv: array of actual args
+ * Return: 0 on success or 1 on failling
+*/
+int main(int ac, char **argv)
 {
+	char *input = NULL, *input_cp = NULL;
+	size_t buffer = 1;
+	int nchars_read;
+	int i, num_tokens = 0;
+	char *token;
 
-	char *line;
-	size_t line_size = 1024;
-	char **tokens = NULL;
-	pid_t child_pid;
-	int status;
-	ssize_t nchars_read;
-
-	(void)argc;
-	(void)argv;
-
+	(void)ac;
 	while (1)
 	{
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
-		line = malloc(sizeof(char) * line_size);
-
-		nchars_read = getline(&line, &line_size, stdin);
+		printf("$ ");
+		nchars_read = getline(&input, &buffer, stdin);
 		if (nchars_read == -1)
+			return (-1);
+		input_cp = malloc(sizeof(char) * nchars_read);
+		if (input_cp == NULL)
+			return (-1);
+		strcpy(input_cp, input);
+		token = strtok(input, " \n");
+		while (token != NULL)
 		{
-			exit(1);
+			num_tokens++;
+			token = strtok(NULL, " \n");
 		}
+		num_tokens++;
 
-		tokens = get_tokens(line, tokens);
-
-		child_pid = fork();
-		if (child_pid == -1)
-			exit(1);
-		if (child_pid == 0)
+		argv = malloc(sizeof(char *) * num_tokens);
+		token = strtok(input_cp, " \n");
+		for (i = 0; token != NULL; i++)
 		{
-			int result = execve(tokens[0], tokens, envp);
-
-			if (result == -1)
-				printf("%s: No such file or directory\n", argv[0]);
-			exit(1);
+			argv[i] = malloc(sizeof(char) * strlen(token));
+			strcpy(argv[i], token);
+			token = strtok(NULL, " \n");
 		}
-		else
-			wait(&status);
-
-		free(line);
-		free(tokens);
+		argv[i] = NULL;
+		execmd(argv);
 	}
+	free(input_cp);
+	free(input);
+
 	return (0);
-}
-
-/**
- * get_tokens - tokenizes a string
- * @line: string to tokenize
- * @tokens: array of tokens
- *
- * Return: array of tokens
- */
-
-char **get_tokens(char *line, char **tokens)
-{
-	char *token, *line_copy;
-	int i = 0;
-
-	line_copy = strdup(line);
-
-	token = strtok(line, " \n");
-	if (strcmp(token, "exit") == 0)
-		exit(0);
-
-	while (token)
-	{
-		token = strtok(NULL, " \n");
-		i++;
-	}
-
-	tokens = malloc(sizeof(char *) * i);
-	token = strtok(line_copy, " \n");
-	i = 0;
-	while (token)
-	{
-		tokens[i] = malloc(strlen(token) * sizeof(char));
-		tokens[i] = token;
-		token = strtok(NULL, " \n");
-		i++;
-	}
-	tokens[i] = NULL;
-	return (tokens);
 }
