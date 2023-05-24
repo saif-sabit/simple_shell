@@ -9,9 +9,10 @@
  * main - Entry point
  * @argc: number of args
  * @argv: actual args
+ * @env: environmental var
  * Return: 0 on success 1 on failliar
  */
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **env)
 {
 	char **tokens;
 	char *line, *fullcommand, *real_path, *path, *copy_line, *token, *del = " \n";
@@ -66,7 +67,7 @@ int main(int argc, char **argv)
 				}
 				if (child_pid == 0)
 				{
-					if (execve(fullcommand, tokens, NULL) == -1)
+					if (execve(fullcommand, tokens, env) == -1)
 					{
 						printf("%s : No such file or directory\n", argv[0]);
 					}
