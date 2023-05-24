@@ -26,6 +26,7 @@ int main(int argc, char **argv, char **envp)
 	char **tokens = NULL;
 	pid_t child_pid;
 	int status;
+	ssize_t nchars_read;
 
 	(void)argc;
 	(void)argv;
@@ -34,7 +35,12 @@ int main(int argc, char **argv, char **envp)
 	{
 		printf("#cisfun$ ");
 		line = malloc(sizeof(char) * line_size);
-		getline(&line, &line_size, stdin);
+
+		nchars_read = getline(&line, &line_size, stdin);
+		if (nchars_read == -1)
+		{
+			return (-1);
+		}
 
 		tokens = get_tokens(line, tokens);
 
@@ -46,7 +52,8 @@ int main(int argc, char **argv, char **envp)
 			int result = execve(tokens[0], tokens, envp);
 
 			if (result == -1)
-				exit(0);
+				printf("%s : No such file or directory\n", argv[0]);
+			exit(0);
 		}
 		else
 			wait(&status);
