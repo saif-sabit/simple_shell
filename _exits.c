@@ -6,7 +6,7 @@
  * @cmd: the command to execute.
  * Return: 0 on success.
  * Description: function that exit the shell
- * with the given status or 0 if no status is given 
+ * with the given status or 0 if no status is given
  */
 int _exits(char **cmd)
 {
