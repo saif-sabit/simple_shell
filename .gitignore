@@ -1,1 +1,4 @@
 _test
+generate-authors.sh
+.vscode
+shell.dSYM
