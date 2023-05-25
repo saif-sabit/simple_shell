@@ -1,4 +1,4 @@
-_test
+_test/*
 generate-authors.sh
-.vscode
-shell.dSYM
+.vscode/*
+shell.dSYM/*
