@@ -27,19 +27,17 @@ int main(void)
 			k++;
 		}
 		free(line);
-		free(cmds);
 	}
 	else
 	{
 		char *line, **tokents;
-		int k = 1;
 
 		while (1)
 		{
 			line = read_line();
 			tokents = tokenization(line);
 			if (_execmd(tokents) > 0)
-				_errors(_execmd(tokents), tokents, k);
+				_errors(_execmd(tokents), tokents, 1);
 		}
 		free(line);
 		free(tokents);
