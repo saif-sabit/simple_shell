@@ -2,12 +2,12 @@
 #include <ctype.h>
 
 /**
- * exits - exit the shell.
+ * _exits - exit the shell.
  * @cmd: the command to execute.
  * Return: 0 on success.
  * Description: If no arguments are given, exit with status 0.
  */
-int exits(char **cmd)
+int _exits(char **cmd)
 {
 	if (cmd[1] != NULL)
 	{

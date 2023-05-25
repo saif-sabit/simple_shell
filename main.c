@@ -21,7 +21,7 @@ int main(void)
 			{
 				cmds = tokenization(line);
 				if (_execmd(cmds) > 0)
-					error(_execmd(cmds), cmds, k);
+					_errors(_execmd(cmds), cmds, k);
 				free(line);
 				free(cmds);
 			}
@@ -40,7 +40,7 @@ int main(void)
 			line = read_line();
 			tokents = tokenization(line);
 			if (_execmd(tokents) > 0)
-				error(_execmd(tokents), tokents, k);
+				_errors(_execmd(tokents), tokents, k);
 		}
 		free(line);
 		free(tokents);

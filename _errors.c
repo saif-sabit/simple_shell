@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * error - print the error message.
+ * _errors - print the error message.
  * @status: the status of the error.
  * @s: the string to print.
  * @k: the number of the error.
  */
-void error(int status, char **s, int k)
+void _errors(int status, char **s, int k)
 {
 	char *progname = program();
 	char errun[MAX_NUM];

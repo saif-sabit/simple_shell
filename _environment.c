@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * env - print the environment.
+ * _environment - print the environment.
  * @cmd: the command to execute.
  * Return: 0 on success.
  * Description: If no arguments are given, print the entire environment.
  */
-int env(char **cmd)
+int _environment(char **cmd)
 {
 	int i;
 	char *env_var;
