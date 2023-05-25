@@ -10,3 +10,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
 sudo chmod +x shell shell_0.3 shell_0.4.1 simple_shell
 
 # valgrind –leak-check=full –show-leak-kinds=all ./shell 
+
+# gcc -g -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
+# export MallocStackLogging=1
+# leaks --atExit -- ./shell
