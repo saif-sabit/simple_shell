@@ -13,3 +13,7 @@ sudo chmod +x shell shell_0.3 shell_0.4.1 simple_shell
 # gcc -g -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o shell
 # export MallocStackLogging=1
 # leaks --atExit -- ./shell
+# _test/checker.bash ./shell _test/1_task_1/*.bash
+# _test/checker.bash ./shell _test/2_task_2/*.bash
+# _test/checker.bash ./shell _test/3_task_3/*.bash
+# _test/checker.bash ./shell _test/4_task_4/*.bash

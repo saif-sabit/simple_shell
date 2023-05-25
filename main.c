@@ -27,6 +27,7 @@ int main(void)
 			k++;
 		}
 		free(line);
+		free(cmds);
 	}
 	else
 	{
