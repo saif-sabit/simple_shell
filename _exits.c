@@ -11,13 +11,16 @@ int _exits(char **cmd)
 {
 	if (cmd[1] != NULL)
 	{
-		int n = atoi(cmd[1]);
-
-		if (n == 0 && *cmd[1] != '0')
-			return (2);
-		free(cmd);
-		exit(n);
+		if (isdigit(cmd[1][0]))
+		{
+			exit(atoi(cmd[1]));
+		}
+		else
+		{
+			perror("exit");
+			return (1);
+		}
 	}
-	free(cmd);
+	*cmd = NULL;
 	exit(EXIT_SUCCESS);
 }
