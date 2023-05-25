@@ -15,7 +15,7 @@ int main(void)
 		while (1)
 		{
 			write(STDOUT_FILENO, "#cisfun$ ", 10);
-			line = read_stdin();
+			line = "ls -l";
 			if (line != NULL)
 			{
 				cmds = tokenization(line);
