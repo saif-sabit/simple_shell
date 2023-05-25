@@ -6,7 +6,7 @@
  * @de: the delimiter string.
  * Return: 1 if found, 0 if not.
  */
-unsigned int delimiter(char c, char *de)
+unsigned int _delimiter(char c, char *de)
 {
 	while (*de != '\0')
 	{
@@ -14,5 +14,6 @@ unsigned int delimiter(char c, char *de)
 			return (1);
 		de++;
 	}
+	free(de);
 	return (0);
 }

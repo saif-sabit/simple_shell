@@ -19,7 +19,7 @@ char *_strtok(char *str, char *delim)
 
 	while (1)
 	{
-		if (delimiter(*str, delim))
+		if (_delimiter(*str, delim))
 		{
 			str++;
 			continue;
@@ -37,7 +37,7 @@ char *_strtok(char *str, char *delim)
 			old_str = str;
 			return (portion);
 		}
-		if (delimiter(*str, delim))
+		if (_delimiter(*str, delim))
 		{
 			*str = '\0';
 			old_str = str + 1;

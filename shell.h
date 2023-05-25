@@ -35,7 +35,7 @@ char **tokenization(char *line);
 int _environment(char **cmd);
 char *_strtok(char *str, char *delim);
 int space_check(char *line);
-unsigned int delimiter(char c, char *de);
+unsigned int _delimiter(char c, char *de);
 
 /**
  * struct built - struct for built-in functions.
