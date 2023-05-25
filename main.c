@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * main - the main function.
  * Return: 0 on success.
@@ -28,11 +27,11 @@ int main(void)
 			k++;
 		}
 		free(line);
+		free(cmds);
 	}
 	else
 	{
-		char *line;
-		char **tokents;
+		char *line, **tokents;
 		int k = 1;
 
 		while (1)
