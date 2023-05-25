@@ -9,14 +9,14 @@
 char *program(void)
 {
 	char *progname = NULL;
-	char buffer[BUFFER_SIZE], pid[MAX_NUM], procpath[MAX_LENGHT] = "/proc/";
+	char buffer[BUFFER_SIZE], pid[MAX_NUM], proc_path[MAX_LENGHT] = "/proc/";
 	int fp;
 
 	_itoa(getpid(), pid);
-	_strcat(procpath, pid);
-	_strcat(procpath, "/cmdline");
+	_strcat(proc_path, pid);
+	_strcat(proc_path, "/cmdline");
 
-	fp = open(procpath, O_RDONLY);
+	fp = open(proc_path, O_RDONLY);
 	if (fp != -1)
 	{
 		int nb = read(fp, buffer, sizeof(progname));
