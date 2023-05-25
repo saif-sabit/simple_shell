@@ -4,6 +4,7 @@
  * _strdup - duplicate a string.
  * @str: the string.
  * Return: the new string.
+ * Description: function that duplicate a string.
  */
 char *_strdup(char *str)
 {

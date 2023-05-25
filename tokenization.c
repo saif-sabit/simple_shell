@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * tokenization - function that Breaks a
- * string into a sequence of tokens based on
- * a specified delimiter.
+ * tokenization - the tokenization function.
  * @line: the commands line.
  * Return: commands as tokens and NULL if it fails.
+ * Description: function that tokenizes the commands line.
+ * Reference: https://www.youtube.com/watch?v=Ig4e0PTeJH4
  */
 char **tokenization(char *line)
 {

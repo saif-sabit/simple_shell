@@ -5,6 +5,10 @@
  * @status: the status of the error.
  * @s: the string to print.
  * @k: the number of the error.
+ * Return: void.
+ * Description: function that print the error message in the shell.
+ * It is used to print the error message in the non-interactive mode.
+ * It is used in non-interactive mode.
  */
 void _errors(int status, char **s, int k)
 {

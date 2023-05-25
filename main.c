@@ -2,6 +2,13 @@
 /**
  * main - the main function.
  * Return: 0 on success.
+ * Description: the main function of the shell program
+ * that read the input from the user and execute it
+ * in non-interactive mode or interactive mode.
+ * in interactive mode, the shell will print a prompt
+ * and wait for the user to enter a command.
+ * in non-interactive mode, the shell will read the commands
+ * from a file and execute them.
  */
 int main(void)
 {

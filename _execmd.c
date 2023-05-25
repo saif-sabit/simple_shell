@@ -5,6 +5,7 @@
  * @path: the path of the command.
  * @cmd: the command to execute.
  * Return: 0 on success.
+ * Description: function that executes a command with the given path.
  */
 int excut_cmd(char *path, char **cmd)
 {
@@ -33,6 +34,7 @@ int excut_cmd(char *path, char **cmd)
  * access_path - function that checks if a file exist.
  * @cmd: the command to check.
  * Return: 0 on success.
+ * Description: function that checks if a file exist.
  */
 int access_path(const char *cmd)
 {
@@ -49,6 +51,7 @@ int access_path(const char *cmd)
  * find_command_path - function that finds the path of a command.
  * @cmd: the command to find.
  * Return: the path of the command.
+ * Description: function that finds the path of a command using the PATH
  */
 char *find_command_path(const char *cmd)
 {
@@ -97,6 +100,7 @@ char *find_command_path(const char *cmd)
  * _execmd - function that executes a command.
  * @cmd: the command to execute.
  * Return: 0 on success.
+ * Description: function that executes a command with the given path.
  */
 int _execmd(char **cmd)
 {

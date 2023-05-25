@@ -6,6 +6,7 @@
  * @str2: the second string.
  * @n: the number of bytes to compare.
  * Return: 0 if the strings are equal, -1 if not.
+ * Description: function that compare two strings.
  */
 int _strncmp(const char *str1, const char *str2, int n)
 {

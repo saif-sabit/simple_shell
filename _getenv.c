@@ -4,6 +4,7 @@
  * _getenv - get an environment variable.
  * @name: the name of the variable.
  * Return: the value of the variable.
+ * Description: function that get an environment variable from environ.
  */
 char *_getenv(const char *name)
 {

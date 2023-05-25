@@ -4,6 +4,8 @@
  * _itoa - convert an integer to a string.
  * @num: the integer.
  * @str: the string.
+ * Return: void.
+ * Description: function that convert an integer to a string
  */
 void _itoa(int num, char *str)
 {

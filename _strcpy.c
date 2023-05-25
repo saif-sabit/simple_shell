@@ -5,6 +5,7 @@
  * @dest: the destination string.
  * @src: the source string.
  * Return: the destination string.
+ * Description: function that copy a string.
  */
 char *_strcpy(char *dest, char *src)
 {

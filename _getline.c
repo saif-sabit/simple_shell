@@ -6,6 +6,7 @@
  * @n: the size of the line.
  * @stream: the stream.
  * Return: the number of bytes read.
+ * Description: function that reads a line from a stream and returns it.
  */
 int _getline(char **lineptr, size_t *n, FILE *stream)
 {

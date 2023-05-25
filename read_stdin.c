@@ -3,6 +3,9 @@
 /**
  * read_stdin - read from stdin.
  * Return: lineptr.
+ * Description: function that reads from stdin and returns it.
+ * it's used in interactive mode to read the commands.
+ * and it's used in non-interactive mode to read the commands from a file.
  */
 char *read_stdin(void)
 {

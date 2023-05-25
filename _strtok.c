@@ -5,6 +5,7 @@
  * @str: the string to tokenize.
  * @delim: the delimiter string.
  * Return: a pointer to the next token.
+ * Description: function that tokenize a string.
  */
 char *_strtok(char *str, char *delim)
 {

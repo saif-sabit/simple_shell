@@ -3,6 +3,8 @@
 /**
  * read_line - read a line from stdin.
  * Return: the line.
+ * Description: function that reads a line from stdin and returns it.
+ * it's used in non-interactive mode
  */
 char *read_line(void)
 {

@@ -1,8 +1,10 @@
 #include "shell.h"
 
 /**
- * program - function that get the program name.
+ * program - the program name.
  * Return: the program name.
+ * Description: function that get the program name from /proc.
+ * It is used to print the error message. It is used in _errors.c.
  */
 char *program(void)
 {

@@ -4,6 +4,7 @@
  * space_check - check if the line is all spaces.
  * @line: the line to check.
  * Return: 1 if all spaces, 0 if not.
+ * Description: function that check if the line is all spaces.
  */
 
 int space_check(char *line)
