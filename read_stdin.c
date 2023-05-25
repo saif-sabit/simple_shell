@@ -20,6 +20,7 @@ char *read_stdin(void)
 	if (len == -1)
 	{
 		perror("getline: ");
+		free(lineptr);
 		exit(EXIT_FAILURE);
 	}
 
