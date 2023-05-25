@@ -38,8 +38,6 @@ char **tokenization(char *line)
 		}
 		token = _strtok(NULL, " \n");
 	}
-	free(line);
-	free(token);
 	tokens[length] = NULL;
 	return (tokens);
 }
