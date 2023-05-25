@@ -107,7 +107,6 @@ int _execmd(char **cmd)
 	char *path;
 	int i, comp;
 	built_in_commands builtin_commands[] = {
-		{"exit", _exits},
 		{"env", _environment},
 		{NULL, NULL},
 	};

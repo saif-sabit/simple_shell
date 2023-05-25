@@ -5,22 +5,20 @@
  * _exits - exit the shell.
  * @cmd: the command to execute.
  * Return: 0 on success.
- * Description: If no arguments are given, exit with status 0.
+ * Description: function that exit the shell
+ * with the given status or 0 if no status is given 
  */
 int _exits(char **cmd)
 {
 	if (cmd[1] != NULL)
 	{
-		if (isdigit(cmd[1][0]))
-		{
-			exit(atoi(cmd[1]));
-		}
-		else
-		{
-			perror("exit");
-			return (1);
-		}
+		int n = atoi(cmd[1]);
+
+		if (n == 0 && *cmd[1] != '0')
+			return (2);
+		free(cmd);
+		exit(n);
 	}
-	*cmd = NULL;
+	free(cmd);
 	exit(EXIT_SUCCESS);
 }
