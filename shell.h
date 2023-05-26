@@ -8,5 +8,5 @@
 #include <sys/stat.h>
 void execmd(char **argv, char *pro);
 char *check_command(char *command);
-char *readLine();
+char *readLine(char *pro);
 #endif
