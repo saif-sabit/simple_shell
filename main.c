@@ -8,7 +8,9 @@
 int main(int ac, char **argv)
 {
 	char *line, **av;
-	char *cmd;
+	int nchars_read;
+	size_t buffer = 1;
+	char *input = NULL;
 
 	(void)ac;
 
@@ -17,11 +19,13 @@ int main(int ac, char **argv)
 		while (1)
 		{
 			write(1, "$ ", 3);
-			cmd = readLine();
-			if (cmd == NULL)
+			nchars_read = getline(&input, &buffer, stdin);
+			if (nchars_read == -1)
+			{
+				free(input);
 				return (0);
-			line = strtok(cmd, "\n");
-			free(cmd);
+			}
+			line = strtok(input, "\n");
 			av = malloc(sizeof(char *) * 2);
 			av[0] = line;
 			av[1] = NULL;
@@ -30,25 +34,24 @@ int main(int ac, char **argv)
 	}
 	else
 	{
-		while (1)
+		nchars_read = getline(&input, &buffer, stdin);
+		if (nchars_read == -1)
 		{
-			cmd = readLine();
-			if (cmd == NULL)
-				return (0);
-			line = strtok(cmd, "\n");
-			free(cmd);
-			av = malloc(sizeof(char *) * 2);
-			av[0] = line;
-			av[1] = NULL;
-			execmd(av, argv[0]);
+			free(input);
+			return (0);
 		}
+		line = strtok(input, "\n");
+		av = malloc(sizeof(char *) * 2);
+		av[0] = line;
+		av[1] = NULL;
+		execmd(av, argv[0]);
 	}
 	return (0);
 }
 /**
  * readLine - reads the line
  * Return: string of chars if read or NULL
-*/
+ */
 char *readLine()
 {
 	int nchars_read;
