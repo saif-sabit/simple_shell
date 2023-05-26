@@ -12,7 +12,6 @@ int main(int ac, char **argv)
 		char **av;
 		int nchars_read, i = 0;
 		size_t buffer = 1;
-
 		char *input = NULL, *input_cp, *token;
 
 		(void)ac;
@@ -26,9 +25,8 @@ int main(int ac, char **argv)
 				return (0);
 			}
 			input_cp = strdup(input);
-			
 			token = strtok(input_cp, " \n");
-			while(token)
+			while (token)
 			{
 				i++;
 				token = strtok(NULL, " \n");
@@ -37,15 +35,15 @@ int main(int ac, char **argv)
 			av = malloc(sizeof(char *) * i);
 			token = strtok(input, " \n");
 			i = 0;
-			while(token)
+			while (token)
 			{
 				av[i] = malloc(sizeof(char) * strlen(token));
 				av[i] = token;
 				token = strtok(NULL, " \n");
 				i++;
-
 			}
 			av[i] = NULL;
+			free(token);
 			execmd(av, argv[0]);
 		}
 	}
