@@ -32,6 +32,26 @@ int main(int ac, char **argv)
 			execmd(av, argv[0]);
 		}
 	}
+	else
+	{
+		char *cmd;
+		printf("non");
+		cmd = readLine();
+		if (cmd)
+		{
+			printf("%s", cmd);
+
+			av = malloc(sizeof(char *) * 2);
+			line = strtok(cmd, "\n");
+			av[0] = line;
+			av[1] = NULL;
+			execmd(av, argv[0]);
+		}
+		else
+		{
+			return (0);
+		}
+	}
 	return (0);
 }
 /**
