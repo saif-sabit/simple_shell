@@ -45,6 +45,7 @@ int main(int ac, char **argv)
 		av[0] = line;
 		av[1] = NULL;
 		execmd(av, argv[0]);
+		free(input);
 	}
 	return (0);
 }
