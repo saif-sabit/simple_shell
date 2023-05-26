@@ -35,22 +35,15 @@ int main(int ac, char **argv)
 	else
 	{
 		char *cmd;
-		printf("non");
-		cmd = readLine();
-		if (cmd)
-		{
-			printf("%s", cmd);
 
-			av = malloc(sizeof(char *) * 2);
-			line = strtok(cmd, "\n");
-			av[0] = line;
-			av[1] = NULL;
-			execmd(av, argv[0]);
-		}
-		else
-		{
+		cmd = readLine();
+		if (cmd == NULL)
 			return (0);
-		}
+		av = malloc(sizeof(char *) * 2);
+		line = strtok(cmd, "\n");
+		av[0] = line;
+		av[1] = NULL;
+		execmd(av, argv[0]);
 	}
 	return (0);
 }
