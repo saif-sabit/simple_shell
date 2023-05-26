@@ -30,10 +30,8 @@ char *check_command(char *command)
 			{
 				return (file_path);
 			}
-			free(file_path);
 			path_token = strtok(NULL, ":");
 		}
-
 		return (NULL);
 	}
 
