@@ -16,7 +16,7 @@ void execmd(char **argv, char *pro)
 		if (child_pid == -1)
 		{
 			perror("Error:");
-			exit(1);
+			exit(0);
 		}
 		if (child_pid == 0)
 		{

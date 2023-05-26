@@ -33,7 +33,7 @@ int main(int ac, char **argv)
 	}
 	else
 	{
-		readLine(argv[0]);
+		printf("No");
 	}
 	return (0);
 }
