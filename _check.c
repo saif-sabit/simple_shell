@@ -7,7 +7,7 @@
 
 char *check_command(char *command)
 {
-	char *path = NULL, *path_copy = NULL, *path_token = NULL, *file_path = NULL;
+	char *path, *path_copy, *path_token, *file_path;
 	struct stat st;
 
 	path = getenv("PATH");
@@ -15,7 +15,6 @@ char *check_command(char *command)
 	{
 		if (stat(command, &st) == 0)
 		{
-			free(path);
 			return (command);
 		}
 		path_copy = strdup(path);
@@ -29,19 +28,14 @@ char *check_command(char *command)
 			strcat(file_path, "\0");
 			if (stat(file_path, &st) == 0)
 			{
-				free(path);
-				free(path_copy);
-				free(path_token);
 				return (file_path);
 			}
+			free(file_path);
 			path_token = strtok(NULL, ":");
 		}
 
-		free(path);
-		free(path_copy);
-		free(path_token);
 		return (NULL);
 	}
-	free(path);
+
 	return (NULL);
 }
