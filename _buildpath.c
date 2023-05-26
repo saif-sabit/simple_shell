@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * __path_executable - builds the executable path of the command
+ * _build_path - builds the executable path of the command
  * @e_path: path of the executable command
  * @cmd: executable command
  *
  * Return: full executable path of the command
  */
-char *__path_executable(char *e_path, char *cmd)
+char *_build_path(char *e_path, char *cmd)
 {
 	int path_length = 0;
 	char *path = NULL;

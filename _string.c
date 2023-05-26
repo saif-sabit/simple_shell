@@ -105,7 +105,6 @@ char *_strcat(char *dest, char *src)
 	return (dest);
 }
 
-
 /**
  * _strcmp - function that compare two strings
  * @s1: pointer to string 1

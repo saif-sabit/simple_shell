@@ -23,7 +23,7 @@ char *_getpath(char *cmd)
 		return (NULL);
 	}
 
-	cmd_path = __path_executable(e_path, cmd);
+	cmd_path = _build_path(e_path, cmd);
 	if (cmd_path == NULL)
 	{
 		_free_double_ptr(pathtoks);

@@ -4,12 +4,12 @@
  * _prompt - display a prompt, take and pass a command for execution
  * @argv: argument vector
  * @lineptr: string entered by user
- * @counts: command counts
+ * @counter: command counter
  * @size: buffer size
  *
  * Return: nothing
  */
-void _prompt(char *lineptr, size_t size, int counts, char **argv)
+void _prompt(char *lineptr, size_t size, int counter, char **argv)
 {
 	int i, builtin_stat;
 	ssize_t nread;
@@ -33,9 +33,9 @@ void _prompt(char *lineptr, size_t size, int counts, char **argv)
 			free(lineptr);
 			return;
 		}
-		builtin_stat = _built_in_functions(linecmd, lineptr);
+		builtin_stat = _built_in(linecmd, lineptr);
 		if (builtin_stat == -1)
-			_execve(linecmd, lineptr, counts, argv);
+			_execve(linecmd, lineptr, counter, argv);
 		for (i = 0; linecmd[i] != NULL; i++)
 			free(linecmd[i]);
 		free(linecmd);

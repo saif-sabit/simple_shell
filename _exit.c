@@ -24,12 +24,12 @@ int _atoi(char *str)
 
 
 /**
- * _exit_simple_shell - function that exits the simple shell
+ * _exit_ - function that exits the simple shell
  * @lineptr: command line input string from user
  *
  * Return: exit shell if success, -1 if error
  */
-void _exit_simple_shell(char *lineptr)
+void _exit_(char *lineptr)
 {
 	int status = 0;
 	char **exit_token;
@@ -58,5 +58,5 @@ void _exit_simple_shell(char *lineptr)
 
 	_free_double_ptr(exit_token);
 	free(lineptr);
-	exit(status);
+	exit(statuscode);
 }

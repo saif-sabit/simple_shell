@@ -14,13 +14,13 @@ void _exit_shell(char *lineptr)
 
 
 /**
- * _signal_ignore - function that ignores ^C (SIGINT) to the process
+ * _signal - function that ignores ^C (SIGINT) to the process
  * @sig: integer value of signal
  *
  * Return: Nothing
  */
 
-void _signal_ignore(int sig)
+void _signal(int sig)
 {
 	(void)sig;
 	write(STDOUT_FILENO, "\n$ ", 3);
