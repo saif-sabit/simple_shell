@@ -15,23 +15,7 @@ char *_strcpy(char *dest, char *src)
 	dest[count] = '\0';
 	return (dest);
 }
-/**
- * _strlen - function name
- * Description: calculate the length of a string
- * @s: pointer to string
- * Return: integer length of the string
- */
-unsigned int _strlen(char *s)
-{
-	unsigned int len = 0;
 
-	while (*s)
-	{
-		len++;
-		s++;
-	}
-	return (len);
-}
 /**
  * _strdup - function name
  * Description: a function that returns a pointer to a
@@ -121,19 +105,4 @@ int _strcmp(char *s1, char *s2)
 		i++;
 	return (s1[i] - s2[i]);
 }
-/**
- * _strchr - a function that locates a character in a string.
- * @s: pointer to string
- * @c: character to be located
- * Return: returns the first occurrence of the character c
- */
-char *_strchr(char *s, char c)
-{
-	while (*s != c)
-	{
-		if (*s == '\0')
-			return (NULL);
-		s++;
-	}
-	return (s);
-}
+
