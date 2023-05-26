@@ -40,8 +40,8 @@ char *check_command(char *command)
 		free(path);
 		free(path_copy);
 		free(path_token);
-		return NULL;
+		return (NULL);
 	}
 	free(path);
-	return NULL;
+	return (NULL);
 }
