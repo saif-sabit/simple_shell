@@ -31,10 +31,6 @@ int main(int ac, char **argv)
 			execmd(av, argv[0]);
 		}
 	}
-	else
-	{
-		printf("No");
-	}
 	return (0);
 }
 /**
