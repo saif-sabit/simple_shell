@@ -9,10 +9,11 @@ int main(int ac, char **argv)
 {
 	if (isatty(STDIN_FILENO) == 1)
 	{
-		char *line, **av;
-		int nchars_read;
+		char **av;
+		int nchars_read, i = 0;
 		size_t buffer = 1;
-		char *input = NULL;
+
+		char *input = NULL, *input_cp, *token;
 
 		(void)ac;
 		while (1)
@@ -24,10 +25,27 @@ int main(int ac, char **argv)
 				free(input);
 				return (0);
 			}
-			line = strtok(input, "\n");
-			av = malloc(sizeof(char *) * 2);
-			av[0] = line;
-			av[1] = NULL;
+			input_cp = strdup(input);
+			
+			token = strtok(input_cp, " \n");
+			while(token)
+			{
+				i++;
+				token = strtok(NULL, " \n");
+			}
+			i++;
+			av = malloc(sizeof(char *) * i);
+			token = strtok(input, " \n");
+			i = 0;
+			while(token)
+			{
+				av[i] = malloc(sizeof(char) * strlen(token));
+				av[i] = token;
+				token = strtok(NULL, " \n");
+				i++;
+
+			}
+			av[i] = NULL;
 			execmd(av, argv[0]);
 		}
 	}
@@ -40,10 +58,10 @@ int main(int ac, char **argv)
  */
 char *readLine(char *pro)
 {
-	char *input = NULL;
+	char *input = NULL, *input_cp;
 	int nchars_read;
 	size_t buffer = 1;
-	char *line, **av;
+	char **av;
 
 	while (1)
 	{
@@ -54,9 +72,9 @@ char *readLine(char *pro)
 			free(input);
 			return (0);
 		}
-		line = strtok(input, "\n");
-		av = malloc(sizeof(char *) * 2);
-		av[0] = line;
+		input_cp = strdup(input);
+		printf("%s", input_cp);
+		av = malloc(sizeof(char *) * 3);
 		av[1] = NULL;
 		execmd(av, pro);
 	}

@@ -5,37 +5,35 @@
  * @pro: program name
  */
 
-void execmd(char **argv, char *pro)
+void execmd(char **av, char *pro)
 {
-	char *actual_command = NULL;
-
-	actual_command = check_command(argv[0]);
+	char *command = NULL, *actual_command = NULL;
+	command = av[0];
+	actual_command = check_command(command);
 	if (actual_command)
 	{
 		pid_t child_pid;
 		int status;
-
 		child_pid = fork();
 		if (child_pid == -1)
 		{
-			free(actual_command);
 			exit(0);
 		}
 		if (child_pid == 0)
 		{
-			if (execve(actual_command, argv, NULL) == -1)
+			if (execve(actual_command, av, NULL) == -1)
 			{
-				perror(pro);
-				free(argv);
-				free(actual_command);
 				exit(0);
 			}
+			sleep(3);
 		}
-		else
-		{
+		else{
 			wait(&status);
-			free(actual_command);
-			free(argv);
 		}
+
+	}
+	else
+	{
+		printf("%s", pro);
 	}
 }
