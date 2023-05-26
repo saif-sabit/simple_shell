@@ -43,7 +43,6 @@ int main(int ac, char **argv)
 				i++;
 			}
 			av[i] = NULL;
-			free(token);
 			execmd(av, argv[0]);
 		}
 	}
